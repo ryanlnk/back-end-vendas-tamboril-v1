@@ -13,10 +13,21 @@ public class CustomerService
     _context = context;
   }
 
-  public List<Customer> GetCustomer()
+  public List<Customer> GetCustomers()
   {
     return _context.Customer.ToList();
   }
+
+  public Customer GetCustomer(int id)
+  {
+    var customer = _context.Customer.SingleOrDefault(c => c.Id == id);
+
+    if (customer is null)
+      return null;
+
+    return customer;
+  }
+
   public Customer PostCustomer(Customer customer)
   {
     _context.Customer.Add(customer);
