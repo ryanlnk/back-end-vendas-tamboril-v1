@@ -52,4 +52,15 @@ public class CustomerService
 
     return customer;
   }
+
+  public void DeleteCustomer(int id)
+  {
+    var customer = _context.Customer.SingleOrDefault(c => c.Id == id);
+
+    if (customer is null)
+      throw new Exception("Customer not found");
+
+    _context.Remove(customer);
+    _context.SaveChanges();
+  }
 }

@@ -51,4 +51,18 @@ public class CustomerController : ControllerBase
 
     return Ok(customer);
   }
+
+  [HttpDelete("{id:int}")]
+  public ActionResult DeleteCustomer([FromRoute] int id)
+  {
+    try
+    {
+      _customerService.DeleteCustomer(id);
+      return NoContent();
+    }
+    catch (Exception)
+    {
+      return NotFound();
+    }
+  }
 }
