@@ -34,4 +34,22 @@ public class CustomerService
     _context.SaveChanges();
     return customer;
   }
+
+  public Customer PutCustomer(int id, Customer c)
+  {
+    Customer customer = _context.Customer.SingleOrDefault(c => c.Id == id);
+
+    if (customer is null)
+      return null;
+
+    customer.Name = c.Name;
+    customer.Email = c.Email;
+    customer.Contact = c.Contact;
+    customer.BirthDate = c.BirthDate;
+    customer.CPF = c.CPF;
+
+    _context.SaveChanges();
+
+    return customer;
+  }
 }

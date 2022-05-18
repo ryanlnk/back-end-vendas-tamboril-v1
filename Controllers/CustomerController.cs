@@ -33,12 +33,22 @@ public class CustomerController : ControllerBase
     return Ok(customer);
   }
 
-
   [HttpPost]
   public ActionResult<Customer> PostCustomer([FromBody] Customer c)
   {
     var customer = _customerService.PostCustomer(c);
 
     return CreatedAtAction(nameof(GetCustomers), new { id = customer.Id }, customer);
+  }
+
+  [HttpPut("{id:int}")]
+  public ActionResult<Customer> PutCustomer([FromRoute] int id, [FromBody] Customer c)
+  {
+    var customer = _customerService.PutCustomer(id, c);
+
+    if (customer is null)
+      return NotFound();
+
+    return Ok(customer);
   }
 }
