@@ -1,5 +1,8 @@
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using VendasTamboril.Data;
+using VendasTamboril.Dtos.Customer;
 using VendasTamboril.Models;
 
 namespace VendasTamboril.Services;
@@ -13,46 +16,58 @@ public class CustomerService
     _context = context;
   }
 
-  public List<Customer> GetCustomers()
+  // Retornando uma lista com todos os clientes
+  public List<CustomerResponseDto> GetCustomers()
   {
-    return _context.Customer.ToList();
+    return _context.Customer.AsNoTracking().ProjectToType<CustomerResponseDto>().ToList();
   }
 
-  public Customer GetCustomer(int id)
+  // Retornando um único cliente
+  public CustomerResponseDto GetCustomer(int id)
   {
+    var customer = _context.Customer.AsNoTracking().SingleOrDefault(c => c.Id == id);
+
+    if (customer is null)
+      return null;
+
+    var customerResponse = customer.Adapt<CustomerResponseDto>();
+
+    return customerResponse;
+  }
+
+  // Salvando um cliente
+  public CustomerResponseDto PostCustomer(CustomerCreateUpdateDto customerDto)
+  {
+    // Mapeando os dados que foram recebidos do Dto para o Model
+    var customer = customerDto.Adapt<Customer>();
+
+    _context.Customer.Add(customer);
+    _context.SaveChanges();
+
+    // Mapaando os dados do Model para o Dto de resposta
+    var customerResponse = customer.Adapt<CustomerResponseDto>();
+
+    return customerResponse;
+  }
+
+  // Atualizando um cliente
+  public CustomerResponseDto PutCustomer(int id, CustomerCreateUpdateDto customerDto)
+  {
+    // Buscar os dados do curso que está sendo editado
     var customer = _context.Customer.SingleOrDefault(c => c.Id == id);
 
     if (customer is null)
       return null;
 
-    return customer;
-  }
-
-  public Customer PostCustomer(Customer customer)
-  {
-    _context.Customer.Add(customer);
-    _context.SaveChanges();
-    return customer;
-  }
-
-  public Customer PutCustomer(int id, Customer c)
-  {
-    Customer customer = _context.Customer.SingleOrDefault(c => c.Id == id);
-
-    if (customer is null)
-      return null;
-
-    customer.Name = c.Name;
-    customer.Email = c.Email;
-    customer.Contact = c.Contact;
-    customer.BirthDate = c.BirthDate;
-    customer.CPF = c.CPF;
-
+    customerDto.Adapt(customer);
     _context.SaveChanges();
 
-    return customer;
+    var customerResponse = customer.Adapt<CustomerResponseDto>();
+
+    return customerResponse;
   }
 
+  // Deletando um cliente
   public void DeleteCustomer(int id)
   {
     var customer = _context.Customer.SingleOrDefault(c => c.Id == id);

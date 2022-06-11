@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using VendasTamboril.Dtos.Customer;
 using VendasTamboril.Models;
 using VendasTamboril.Services;
 
@@ -16,16 +17,16 @@ public class CustomerController : ControllerBase
   }
 
   [HttpGet]
-  public ActionResult<List<Customer>> GetCustomers()
+  public ActionResult<List<CustomerResponseDto>> GetCustomers()
   {
     var customer = _customerService.GetCustomers();
     return Ok(customer);
   }
 
   [HttpGet("{id:int}")]
-  public ActionResult<Customer> GetCustomer([FromRoute] int id)
+  public ActionResult<CustomerResponseDto> GetCustomer([FromRoute] int id)
   {
-    Customer customer = _customerService.GetCustomer(id);
+    var customer = _customerService.GetCustomer(id);
 
     if (customer is null)
       return NotFound();
@@ -34,7 +35,7 @@ public class CustomerController : ControllerBase
   }
 
   [HttpPost]
-  public ActionResult<Customer> PostCustomer([FromBody] Customer c)
+  public ActionResult<CustomerResponseDto> PostCustomer([FromBody] CustomerCreateUpdateDto c)
   {
     var customer = _customerService.PostCustomer(c);
 
@@ -42,7 +43,7 @@ public class CustomerController : ControllerBase
   }
 
   [HttpPut("{id:int}")]
-  public ActionResult<Customer> PutCustomer([FromRoute] int id, [FromBody] Customer c)
+  public ActionResult<CustomerResponseDto> PutCustomer([FromRoute] int id, [FromBody] CustomerCreateUpdateDto c)
   {
     var customer = _customerService.PutCustomer(id, c);
 
