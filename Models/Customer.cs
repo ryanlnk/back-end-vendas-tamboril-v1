@@ -23,6 +23,10 @@ public class Customer
   [Required]
   public DateTime BirthDate { get; set; }
 
+  public DateTime CreationDate { get; set; }
+
+  public DateTime UpdateDate { get; set; }
+
   [Required]
   [Column(TypeName = "varchar(20)")]
   public string CPF { get; set; }

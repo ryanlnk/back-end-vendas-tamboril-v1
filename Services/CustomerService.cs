@@ -41,6 +41,12 @@ public class CustomerService
     // Mapeando os dados que foram recebidos do Dto para o Model
     var customer = customerDto.Adapt<Customer>();
 
+    //Atualizando as datas de criação e atualização
+    var dateNow = DateTime.Now;
+    customer.CreationDate = dateNow;
+    customer.UpdateDate = dateNow;
+
+    //Salvando curso no banco de dados
     _context.Customer.Add(customer);
     _context.SaveChanges();
 
@@ -60,6 +66,9 @@ public class CustomerService
       return null;
 
     customerDto.Adapt(customer);
+
+    customer.UpdateDate = DateTime.Now;
+
     _context.SaveChanges();
 
     var customerResponse = customer.Adapt<CustomerResponseDto>();

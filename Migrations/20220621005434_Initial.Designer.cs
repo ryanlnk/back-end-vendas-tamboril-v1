@@ -11,7 +11,7 @@ using VendasTamboril.Data;
 namespace VendasTamboril.Migrations
 {
     [DbContext(typeof(TamborilContext))]
-    [Migration("20220518115451_Initial")]
+    [Migration("20220621005434_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace VendasTamboril.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -45,6 +48,9 @@ namespace VendasTamboril.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 

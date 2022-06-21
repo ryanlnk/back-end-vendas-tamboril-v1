@@ -12,5 +12,7 @@ public class CustomerResponseDto
 
   public DateTime BirthDate { get; set; }
 
+  public DateTime UpdateDate { get; set; }
+
   public string CPF { get; set; }
 }
