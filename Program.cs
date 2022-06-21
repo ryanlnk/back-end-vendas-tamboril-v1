@@ -25,7 +25,7 @@ var app = builder.Build();
 
 // Desabilitando CROS para o front
 app.UseCors(policy =>
-    policy.WithOrigins("https://localhost:7097")
+    policy.WithOrigins("http://localhost:3000")
     .AllowAnyMethod()
     .AllowAnyHeader()
 );
