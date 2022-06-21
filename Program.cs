@@ -23,6 +23,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Desabilitando CROS para o front
+app.UseCors(policy =>
+    policy.WithOrigins("https://localhost:7097")
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
