@@ -7,5 +7,6 @@ public class TamborilContext : DbContext
 {
   public TamborilContext(DbContextOptions<TamborilContext> options) : base(options) { }
   public DbSet<Customer> Customer { get; set; }
+  public DbSet<Seller> Seller { get; set; }
 
 }
