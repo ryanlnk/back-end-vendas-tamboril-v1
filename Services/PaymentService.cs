@@ -70,4 +70,15 @@ public class PaymentService
 
     return paymentResponse;
   }
+
+  public void DeletePayment(int id)
+  {
+    var payment = _context.Payment.SingleOrDefault(c => c.Id == id);
+
+    if (payment is null)
+      throw new Exception("Payment not found");
+
+    _context.Remove(payment);
+    _context.SaveChanges();
+  }
 }

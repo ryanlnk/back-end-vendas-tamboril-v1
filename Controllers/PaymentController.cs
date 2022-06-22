@@ -53,4 +53,15 @@ public class PaymentController : ControllerBase
 
     return Ok(payment);
   }
+
+  [HttpDelete("{id:int}")]
+  public ActionResult DeletePayment([FromRoute] int id)
+  {
+    try
+    {
+      _paymentService.DeletePayment(id);
+      return NoContent();
+    }
+    catch { return NotFound(); }
+  }
 }
