@@ -33,4 +33,13 @@ public class PaymentController : ControllerBase
 
     return Ok(payment);
   }
+
+  [HttpPost]
+  public ActionResult<PaymentResponseDto> PostPayment([FromBody] PaymentCreateUpdateDto p)
+  {
+    var payment = _paymentService.PostPayment(p);
+
+    return CreatedAtAction(nameof(GetPayments), new { id = payment.Id }, payment);
+
+  }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VendasTamboril.Data;
 using VendasTamboril.Dtos.Payment;
+using VendasTamboril.Models;
 
 namespace VendasTamboril.Services;
 
@@ -28,6 +29,23 @@ public class PaymentService
 
     if (payment is null)
       return null;
+
+    var paymentResponse = payment.Adapt<PaymentResponseDto>();
+
+    return paymentResponse;
+  }
+
+  //Salvando um registro no banco de dados
+  public PaymentResponseDto PostPayment(PaymentCreateUpdateDto paymentDto)
+  {
+    var payment = paymentDto.Adapt<Payment>();
+
+    var dateNow = DateTime.Now;
+    payment.CreationDate = dateNow;
+    payment.UpdateDate = dateNow;
+
+    _context.Payment.Add(payment);
+    _context.SaveChanges();
 
     var paymentResponse = payment.Adapt<PaymentResponseDto>();
 
