@@ -51,4 +51,23 @@ public class PaymentService
 
     return paymentResponse;
   }
+
+  //Editando um registro no banco de dados
+  public PaymentResponseDto PutPayment(int id, PaymentCreateUpdateDto paymentDto)
+  {
+    var payment = _context.Payment.SingleOrDefault(c => c.Id == id);
+
+    if (payment is null)
+      return null;
+
+    paymentDto.Adapt(payment);
+
+    payment.UpdateDate = DateTime.Now;
+
+    _context.SaveChanges();
+
+    var paymentResponse = payment.Adapt<PaymentResponseDto>();
+
+    return paymentResponse;
+  }
 }

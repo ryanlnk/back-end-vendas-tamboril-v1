@@ -42,4 +42,15 @@ public class PaymentController : ControllerBase
     return CreatedAtAction(nameof(GetPayments), new { id = payment.Id }, payment);
 
   }
+
+  [HttpPut("{id:int}")]
+  public ActionResult<PaymentResponseDto> PutPayment([FromRoute] int id, [FromBody] PaymentCreateUpdateDto p)
+  {
+    var payment = _paymentService.PutPayment(id, p);
+
+    if (payment is null)
+      return NotFound();
+
+    return Ok(payment);
+  }
 }
