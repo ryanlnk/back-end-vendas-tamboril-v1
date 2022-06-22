@@ -20,4 +20,17 @@ public class PaymentService
   {
     return _context.Payment.AsNoTracking().ProjectToType<PaymentResponseDto>().ToList();
   }
+
+  //Retornando um pagamento pelo ID
+  public PaymentResponseDto GetPayment(int id)
+  {
+    var payment = _context.Payment.AsNoTracking().SingleOrDefault(c => c.Id == id);
+
+    if (payment is null)
+      return null;
+
+    var paymentResponse = payment.Adapt<PaymentResponseDto>();
+
+    return paymentResponse;
+  }
 }

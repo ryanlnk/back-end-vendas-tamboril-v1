@@ -22,4 +22,15 @@ public class PaymentController : ControllerBase
     var payment = _paymentService.GetPayments();
     return Ok(payment);
   }
+
+  [HttpGet("{id:int}")]
+  public ActionResult<PaymentResponseDto> GetPayment([FromRoute] int id)
+  {
+    var payment = _paymentService.GetPayment(id);
+
+    if (payment is null)
+      return NotFound();
+
+    return Ok(payment);
+  }
 }
