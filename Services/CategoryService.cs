@@ -48,4 +48,21 @@ public class CategoryService
 
     return categoryResponse;
   }
+
+  public CategoryResponseDto PutCategory(int id, CategoryCreateUpdateDto categoryDto)
+  {
+    var category = _context.Category.SingleOrDefault(c => c.Id == id);
+
+    if (category is null)
+      return null;
+
+    categoryDto.Adapt(category);
+
+    category.UpdateDate = DateTime.Now;
+    _context.SaveChanges();
+
+    var categoryResponse = category.Adapt<CategoryResponseDto>();
+
+    return categoryResponse;
+  }
 }

@@ -39,4 +39,15 @@ public class CategoryController : ControllerBase
     var category = _categoryService.PostCategory(c);
     return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, category);
   }
+
+  [HttpPut("{id:int}")]
+  public ActionResult<CategoryResponseDto> PutCategory([FromRoute] int id, [FromBody] CategoryCreateUpdateDto c)
+  {
+    var category = _categoryService.PutCategory(id, c);
+
+    if (category is null)
+      return null;
+
+    return Ok(category);
+  }
 }
