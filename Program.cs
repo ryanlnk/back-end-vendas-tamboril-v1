@@ -17,6 +17,7 @@ builder.Services.AddDbContext<TamborilContext>(
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<SellerService>();
 builder.Services.AddScoped<PaymentService>();
+builder.Services.AddScoped<CategoryService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
