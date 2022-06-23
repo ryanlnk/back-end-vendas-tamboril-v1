@@ -21,6 +21,18 @@ public class CategoryService
     return _context.Category.AsNoTracking().ProjectToType<CategoryResponseDto>().ToList();
   }
 
+  public CategoryResponseDto GetCategory(int id)
+  {
+    var category = _context.Category.AsNoTracking().SingleOrDefault(c => c.Id == id);
+
+    if (category is null)
+      return null;
+
+    var categoryResponse = category.Adapt<CategoryResponseDto>();
+
+    return categoryResponse;
+  }
+
   public CategoryResponseDto PostCategory(CategoryCreateUpdateDto categoryDto)
   {
     var category = categoryDto.Adapt<Category>();

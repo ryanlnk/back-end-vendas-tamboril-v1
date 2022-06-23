@@ -22,6 +22,17 @@ public class CategoryController : ControllerBase
     return Ok(category);
   }
 
+  [HttpGet("{id:int}")]
+  public ActionResult<CategoryResponseDto> GetCategory([FromRoute] int id)
+  {
+    var category = _categoryService.GetCategory(id);
+
+    if (category is null)
+      return NotFound();
+
+    return Ok(category);
+  }
+
   [HttpPost]
   public ActionResult<CategoryResponseDto> PostCategory([FromBody] CategoryCreateUpdateDto c)
   {
