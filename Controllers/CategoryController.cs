@@ -50,4 +50,15 @@ public class CategoryController : ControllerBase
 
     return Ok(category);
   }
+
+  [HttpDelete("{id:int}")]
+  public ActionResult DeleteCategory([FromRoute] int id)
+  {
+    try
+    {
+      _categoryService.DeleteCategory(id);
+      return NoContent();
+    }
+    catch { return NotFound(); }
+  }
 }

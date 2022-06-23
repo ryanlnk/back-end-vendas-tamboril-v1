@@ -65,4 +65,15 @@ public class CategoryService
 
     return categoryResponse;
   }
+
+  public void DeleteCategory(int id)
+  {
+    var category = _context.Category.SingleOrDefault(c => c.Id == id);
+
+    if (category is null)
+      throw new Exception("Category not found");
+
+    _context.Remove(category);
+    _context.SaveChanges();
+  }
 }
