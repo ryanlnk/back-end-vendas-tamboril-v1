@@ -21,4 +21,11 @@ public class CategoryController : ControllerBase
     var category = _categoryService.GetCategories();
     return Ok(category);
   }
+
+  [HttpPost]
+  public ActionResult<CategoryResponseDto> PostCategory([FromBody] CategoryCreateUpdateDto c)
+  {
+    var category = _categoryService.PostCategory(c);
+    return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, category);
+  }
 }
