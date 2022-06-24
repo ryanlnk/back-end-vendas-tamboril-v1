@@ -11,5 +11,10 @@ public class TamborilContext : DbContext
   public DbSet<Payment> Payment { get; set; }
   public DbSet<Category> Category { get; set; }
   public DbSet<Sales> Sales { get; set; }
+  public DbSet<Stock> Stock { get; set; }
+  public DbSet<Product> Product { get; set; }
+  public DbSet<SalesHasProduct> SalesHasProduct { get; set; }
+  public DbSet<SalesHasPayment> SalesHasPayment { get; set; }
+
 
 }
