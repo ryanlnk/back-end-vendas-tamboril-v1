@@ -15,4 +15,6 @@ public class Category
   public DateTime CreationDate { get; set; }
 
   public DateTime UpdateDate { get; set; }
+
+  public List<Product> Products { get; set; }
 }

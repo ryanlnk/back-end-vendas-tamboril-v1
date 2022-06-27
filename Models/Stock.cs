@@ -17,4 +17,7 @@ public class Stock
   [Required]
   [Column(TypeName = "decimal(10,2)")]
   public decimal BuyPrice { get; set; }
+
+  public Product Product { get; set; }
+  public int ProductId { get; set; }
 }

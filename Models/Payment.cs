@@ -15,4 +15,6 @@ public class Payment
   public DateTime CreationDate { get; set; }
 
   public DateTime UpdateDate { get; set; }
+
+  public List<SalesHasPayment> Payments { get; set; }
 }

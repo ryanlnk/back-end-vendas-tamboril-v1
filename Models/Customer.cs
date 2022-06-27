@@ -30,4 +30,6 @@ public class Customer
   [Required]
   [Column(TypeName = "varchar(20)")]
   public string CPF { get; set; }
+
+  public List<Sales> Sales { get; set; }
 }

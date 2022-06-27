@@ -18,4 +18,12 @@ public class Product
 
   [Column(TypeName = "varchar(45)")]
   public string Description { get; set; }
+
+  public Category Category { get; set; }
+
+  public int CategoryId { get; set; }
+
+  public List<Stock> Stocks { get; set; }
+
+  public List<SalesHasProduct> Products { get; set; }
 }

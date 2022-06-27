@@ -18,4 +18,10 @@ public class SalesHasPayment
 
   [Required]
   public DateTime Date { get; set; }
+
+  public Payment Payment { get; set; }
+  public int PaymentId { get; set; }
+
+  public Sales Sales { get; set; }
+  public int SalesId { get; set; }
 }

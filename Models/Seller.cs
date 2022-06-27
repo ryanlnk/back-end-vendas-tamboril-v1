@@ -15,4 +15,6 @@ public class Seller
   public DateTime CreationDate { get; set; }
 
   public DateTime UpdateDate { get; set; }
+
+  public List<Sales> Sales { get; set; }
 }

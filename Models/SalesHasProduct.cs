@@ -18,4 +18,10 @@ public class SalesHasProduct
   [Required]
   [Column(TypeName = "decimal(10,2)")]
   public decimal SubTotal { get; set; }
+
+  public Sales Sales { get; set; }
+  public int SalesId { get; set; }
+
+  public Product Product { get; set; }
+  public int ProductId { get; set; }
 }
