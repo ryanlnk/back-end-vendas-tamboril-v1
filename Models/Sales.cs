@@ -16,6 +16,11 @@ public class Sales
   public Seller Seller { get; set; }
   public int SellerId { get; set; }
 
+  public Payment Payment { get; set; }
+  public int PaymentId { get; set; }
+
+  public AccountBank AccountBank { get; set; }
+  public int AccountBankId { get; set; }
+
   public List<SalesHasProduct> SalesHasProducts { get; set; }
-  public List<SalesHasPayment> SalesHasPayments { get; set; }
 }

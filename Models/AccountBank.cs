@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VendasTamboril.Models;
 
-public class Payment
+public class AccountBank
 {
   [Required]
   public int Id { get; set; }

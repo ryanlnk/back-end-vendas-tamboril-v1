@@ -19,11 +19,12 @@ public class Product
   [Column(TypeName = "varchar(45)")]
   public string Description { get; set; }
 
+  [Required]
+  [Column(TypeName = "decimal(100,2")]
+  public decimal Quantity { get; set; }
+
   public Category Category { get; set; }
-
   public int CategoryId { get; set; }
-
-  public List<Stock> Stocks { get; set; }
 
   public List<SalesHasProduct> Products { get; set; }
 }
