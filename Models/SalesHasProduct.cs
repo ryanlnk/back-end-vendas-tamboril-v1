@@ -20,6 +20,7 @@ public class SalesHasProduct
   public decimal SubTotal { get; set; }
 
   [Required]
+  [Column(TypeName = "varchar(45)")]
   public string PaymentTerms { get; set; }
 
   public Sales Sales { get; set; }

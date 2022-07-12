@@ -9,7 +9,7 @@ public class Seller
   public int Id { get; set; }
 
   [Required]
-  [Column(TypeName = "varchar(255)")]
+  [Column(TypeName = "varchar(45)")]
   public string Name { get; set; }
 
   public DateTime CreationDate { get; set; }
