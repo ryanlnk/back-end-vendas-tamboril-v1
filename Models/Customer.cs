@@ -17,7 +17,7 @@ public class Customer
   public string CPF { get; set; }
 
   [Required]
-  [Column(TypeName = "varchar(255)")]
+  [Column(TypeName = "varchar(20)")]
   public string Contact { get; set; }
 
   public DateTime CreationDate { get; set; }
