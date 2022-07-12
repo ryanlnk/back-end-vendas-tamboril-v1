@@ -19,13 +19,13 @@ public class SellerService
   //Retornando todos os vendedores do banco de dados
   public List<SellerResponseDto> GetSellers()
   {
-    return _context.Seller.AsNoTracking().ProjectToType<SellerResponseDto>().ToList();
+    return _context.Sellers.AsNoTracking().ProjectToType<SellerResponseDto>().ToList();
   }
 
   //Retornando somente um vendedor pelo ID
   public SellerResponseDto GetSeller(int id)
   {
-    var seller = _context.Seller.AsNoTracking().SingleOrDefault(c => c.Id == id);
+    var seller = _context.Sellers.AsNoTracking().SingleOrDefault(c => c.Id == id);
 
     if (seller is null)
       return null;
@@ -44,7 +44,7 @@ public class SellerService
     seller.CreationDate = dateNow;
     seller.UpdateDate = dateNow;
 
-    _context.Seller.Add(seller);
+    _context.Sellers.Add(seller);
     _context.SaveChanges();
 
     var sellerResponse = seller.Adapt<SellerResponseDto>();
@@ -55,7 +55,7 @@ public class SellerService
   //Editando um vendedor já cadastrado no banco de dados
   public SellerResponseDto PutSeller(int id, SellerCreateUpdateDto sellerDto)
   {
-    var seller = _context.Seller.SingleOrDefault(c => c.Id == id);
+    var seller = _context.Sellers.SingleOrDefault(c => c.Id == id);
 
     if (seller is null)
       return null;
@@ -74,7 +74,7 @@ public class SellerService
   //Deletando um vendedor
   public void DeleteSeller(int id)
   {
-    var seller = _context.Seller.SingleOrDefault(c => c.Id == id);
+    var seller = _context.Sellers.SingleOrDefault(c => c.Id == id);
 
     if (seller is null)
       throw new Exception("Seller not found");

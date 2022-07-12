@@ -19,13 +19,13 @@ public class CustomerService
   // Retornando uma lista com todos os clientes
   public List<CustomerResponseDto> GetCustomers()
   {
-    return _context.Customer.AsNoTracking().ProjectToType<CustomerResponseDto>().ToList();
+    return _context.Customers.AsNoTracking().ProjectToType<CustomerResponseDto>().ToList();
   }
 
   // Retornando um único cliente
   public CustomerResponseDto GetCustomer(int id)
   {
-    var customer = _context.Customer.AsNoTracking().SingleOrDefault(c => c.Id == id);
+    var customer = _context.Customers.AsNoTracking().SingleOrDefault(c => c.Id == id);
 
     if (customer is null)
       return null;
@@ -47,7 +47,7 @@ public class CustomerService
     customer.UpdateDate = dateNow;
 
     //Salvando curso no banco de dados
-    _context.Customer.Add(customer);
+    _context.Customers.Add(customer);
     _context.SaveChanges();
 
     // Mapaando os dados do Model para o Dto de resposta
@@ -60,7 +60,7 @@ public class CustomerService
   public CustomerResponseDto PutCustomer(int id, CustomerCreateUpdateDto customerDto)
   {
     // Buscar os dados do curso que está sendo editado
-    var customer = _context.Customer.SingleOrDefault(c => c.Id == id);
+    var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
     if (customer is null)
       return null;
@@ -79,7 +79,7 @@ public class CustomerService
   // Deletando um cliente
   public void DeleteCustomer(int id)
   {
-    var customer = _context.Customer.SingleOrDefault(c => c.Id == id);
+    var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
     if (customer is null)
       throw new Exception("Customer not found");

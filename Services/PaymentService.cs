@@ -19,13 +19,13 @@ public class PaymentService
   //Retornando todos os dados da tabela pagamentos
   public List<PaymentResponseDto> GetPayments()
   {
-    return _context.Payment.AsNoTracking().ProjectToType<PaymentResponseDto>().ToList();
+    return _context.Payments.AsNoTracking().ProjectToType<PaymentResponseDto>().ToList();
   }
 
   //Retornando um pagamento pelo ID
   public PaymentResponseDto GetPayment(int id)
   {
-    var payment = _context.Payment.AsNoTracking().SingleOrDefault(c => c.Id == id);
+    var payment = _context.Payments.AsNoTracking().SingleOrDefault(c => c.Id == id);
 
     if (payment is null)
       return null;
@@ -44,7 +44,7 @@ public class PaymentService
     payment.CreationDate = dateNow;
     payment.UpdateDate = dateNow;
 
-    _context.Payment.Add(payment);
+    _context.Payments.Add(payment);
     _context.SaveChanges();
 
     var paymentResponse = payment.Adapt<PaymentResponseDto>();
@@ -55,7 +55,7 @@ public class PaymentService
   //Editando um registro no banco de dados
   public PaymentResponseDto PutPayment(int id, PaymentCreateUpdateDto paymentDto)
   {
-    var payment = _context.Payment.SingleOrDefault(c => c.Id == id);
+    var payment = _context.Payments.SingleOrDefault(c => c.Id == id);
 
     if (payment is null)
       return null;
@@ -73,7 +73,7 @@ public class PaymentService
 
   public void DeletePayment(int id)
   {
-    var payment = _context.Payment.SingleOrDefault(c => c.Id == id);
+    var payment = _context.Payments.SingleOrDefault(c => c.Id == id);
 
     if (payment is null)
       throw new Exception("Payment not found");

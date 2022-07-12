@@ -18,12 +18,12 @@ public class CategoryService
 
   public List<CategoryResponseDto> GetCategories()
   {
-    return _context.Category.AsNoTracking().ProjectToType<CategoryResponseDto>().ToList();
+    return _context.Categories.AsNoTracking().ProjectToType<CategoryResponseDto>().ToList();
   }
 
   public CategoryResponseDto GetCategory(int id)
   {
-    var category = _context.Category.AsNoTracking().SingleOrDefault(c => c.Id == id);
+    var category = _context.Categories.AsNoTracking().SingleOrDefault(c => c.Id == id);
 
     if (category is null)
       return null;
@@ -41,7 +41,7 @@ public class CategoryService
     category.CreationDate = dateNow;
     category.UpdateDate = dateNow;
 
-    _context.Category.Add(category);
+    _context.Categories.Add(category);
     _context.SaveChanges();
 
     var categoryResponse = category.Adapt<CategoryResponseDto>();
@@ -51,7 +51,7 @@ public class CategoryService
 
   public CategoryResponseDto PutCategory(int id, CategoryCreateUpdateDto categoryDto)
   {
-    var category = _context.Category.SingleOrDefault(c => c.Id == id);
+    var category = _context.Categories.SingleOrDefault(c => c.Id == id);
 
     if (category is null)
       return null;
@@ -68,7 +68,7 @@ public class CategoryService
 
   public void DeleteCategory(int id)
   {
-    var category = _context.Category.SingleOrDefault(c => c.Id == id);
+    var category = _context.Categories.SingleOrDefault(c => c.Id == id);
 
     if (category is null)
       throw new Exception("Category not found");
