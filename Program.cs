@@ -19,6 +19,7 @@ builder.Services.AddScoped<SellerService>();
 builder.Services.AddScoped<PaymentService>();
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<BankAccountService>();
+builder.Services.AddScoped<ProductService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
