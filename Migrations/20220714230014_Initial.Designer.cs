@@ -11,7 +11,7 @@ using VendasTamboril.Data;
 namespace VendasTamboril.Migrations
 {
     [DbContext(typeof(TamborilContext))]
-    [Migration("20220712193812_Initial")]
+    [Migration("20220714230014_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,10 +130,10 @@ namespace VendasTamboril.Migrations
                         .HasColumnType("varchar(45)");
 
                     b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<decimal>("SalePrice")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 

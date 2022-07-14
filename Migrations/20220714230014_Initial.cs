@@ -110,10 +110,10 @@ namespace VendasTamboril.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(45)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SalePrice = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    SalePrice = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     Description = table.Column<string>(type: "varchar(45)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Quantity = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Quantity = table.Column<decimal>(type: "decimal(65,2)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

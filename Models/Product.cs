@@ -13,14 +13,14 @@ public class Product
   public string Name { get; set; }
 
   [Required]
-  [Column(TypeName = "decimal(10,2")]
+  [Column(TypeName = "decimal(10,2)")]
   public decimal SalePrice { get; set; }
 
   [Column(TypeName = "varchar(45)")]
   public string Description { get; set; }
 
   [Required]
-  [Column(TypeName = "decimal(100,2")]
+  [Column(TypeName = "decimal(65,2)")]
   public decimal Quantity { get; set; }
 
   public Category Category { get; set; }

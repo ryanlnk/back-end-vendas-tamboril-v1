@@ -128,10 +128,10 @@ namespace VendasTamboril.Migrations
                         .HasColumnType("varchar(45)");
 
                     b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(65,2)");
 
                     b.Property<decimal>("SalePrice")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
