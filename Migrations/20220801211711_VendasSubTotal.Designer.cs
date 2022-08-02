@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VendasTamboril.Data;
 
@@ -10,9 +11,10 @@ using VendasTamboril.Data;
 namespace VendasTamboril.Migrations
 {
     [DbContext(typeof(TamborilContext))]
-    partial class TamborilContextModelSnapshot : ModelSnapshot
+    [Migration("20220801211711_VendasSubTotal")]
+    partial class VendasSubTotal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

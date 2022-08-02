@@ -12,6 +12,8 @@ public class SalesResponseDto
 
   public DateTime Date { get; set; }
 
+  public decimal SubTotal { get; set; }
+
   public CustomerResponseDto Customer { get; set; }
 
   public SellerResponseDto Seller { get; set; }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VendasTamboril.Models;
 
@@ -9,6 +10,10 @@ public class Sales
 
   [Required]
   public DateTime Date { get; set; }
+
+  [Required]
+  [Column(TypeName = "decimal(10,2)")]
+  public decimal SubTotal { get; set; }
 
   public Customer Customer { get; set; }
   public int CustomerId { get; set; }
